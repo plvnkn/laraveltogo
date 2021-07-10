@@ -4,6 +4,8 @@ import Main from './Main.vue'
 
 import router from './router'
 import store from './store'
+import i18n from '@/plugins/i18n'
+
 
 import(/* webpackChunkName: "lodash" */ /* webpackPrefetch: true */ '@/plugins/lodash')
 
@@ -19,7 +21,7 @@ async function init (): Promise<void> {
     const { default: vuetify } = await vuetifyPromise
 
     new Vue({
-        //i18n: lang.i18n,
+        i18n,
         router,
         store,
         vuetify,
