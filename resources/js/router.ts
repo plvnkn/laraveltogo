@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import App from '@/modules/app/routes'
-import Finances from '@/modules/finances/routes'
+import ModuleA from '@/modules/modeuleA/routes'
+import ModuleB from '@/modules/moduleB/routes'
 
 
 Vue.use(VueRouter)
 
 const routes = Array.prototype.concat([
-    App,
-    Finances,
+    ModuleA,
+    ModuleB,
 ])
 
 const router = new VueRouter({
