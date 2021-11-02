@@ -1,5 +1,11 @@
 export default {
-    path: 'finances',
-    name: 'Finances',
-    component: () => import(/* webpackChunkName: "finances" */ './views/index.vue'),
+    path: '/moduleB',
+    name: 'ModuleB',
+    component: () => import(/* webpackChunkName: "moduleB" */ './views/index.vue'),
+    children: [
+        {
+            path: 'ChildB',
+            name: 'ChildB'
+        }
+    ]
 }

@@ -1,5 +1,5 @@
 export default {
-    path: '/',
-    name: 'App',
+    path: '/moduleA',
+    name: 'ModuleA',
     component: () => import(/* webpackChunkName: "app" */ './views/index.vue'),
 }
