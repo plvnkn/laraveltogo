@@ -1,13 +1,13 @@
 import Vue from 'vue'
-import Vuetify from '@/plugins/vuetify'
 import Main from './Main.vue'
 
 import router from './router'
 import store from './store'
 import i18n from '@/plugins/i18n'
 
-
 import(/* webpackChunkName: "lodash" */ /* webpackPrefetch: true */ '@/plugins/lodash')
+
+import(/* webpackChunkName: "validation" */ /* webpackPrefetch: true */ '@/plugins/validation')
 
 const axiosPromise = import(/* webpackChunkName: "axios" */ /* webpackPreload: true */ '@/plugins/axios')
 const momentPromise = import(/* webpackChunkName: "moment" */ /* webpackPrefetch: true */ '@/plugins/moment')
