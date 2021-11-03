@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-app-bar>
+    <v-app>
+        <v-app-bar app>
             <v-app-bar-title v-t="'core.title'"></v-app-bar-title>
 
             <v-spacer></v-spacer>
@@ -19,16 +19,28 @@
                 <router-view></router-view>
             </v-container>
         </v-main>
-    </div>
+      <snackbar />
+    </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
+import Snackbar from '@/modules/core/components/Snackbar.vue'
 
 export default Vue.extend({
     name: 'Main',
+    components: { Snackbar },
     data: () => ({
         user: 'Mr Smith'
-    })
+    }),
+
+    methods: {
+        ...mapActions('core', ['messageSuccess'])
+    },
+
+    mounted () {
+        this.messageSuccess({ text: 'Snack is working too'})
+    }
 })
 </script>

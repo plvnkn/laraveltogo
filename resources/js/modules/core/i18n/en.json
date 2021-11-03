@@ -1,4 +1,7 @@
 {
+    "buttons": {
+        "close": "Close"
+    },
     "title": "Laravel & Vue Starter",
     "welcome": "Hello {name}"
 }
