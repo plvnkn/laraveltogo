@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+
+import Core from '@/modules/core/routes'
 import ModuleA from '@/modules/moduleA/routes'
 import ModuleB from '@/modules/moduleB/routes'
 
@@ -9,6 +11,7 @@ Vue.use(VueRouter)
 const routes = Array.prototype.concat([
     ModuleA,
     ModuleB,
+    Core
 ])
 
 const router = new VueRouter({
