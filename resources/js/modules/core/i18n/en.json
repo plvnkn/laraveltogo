@@ -2,6 +2,26 @@
     "buttons": {
         "close": "Close"
     },
+    "forms": {
+        "login": {
+            "button": "Login",
+            "caption": "Sign In",
+            "email": "E-Mail",
+            "password": "Password"
+        },
+        "logout": {
+            "caption": "Logout"
+        }
+    },
+    "profile": {
+        "title": "User profile",
+        "edit": {
+            "title": "Edit"
+        },
+        "name": "Name",
+        "email": "E-Mail",
+        "logout": "Logout"
+    },
     "title": "Laravel & Vue Starter",
     "welcome": "Hello {name}"
 }

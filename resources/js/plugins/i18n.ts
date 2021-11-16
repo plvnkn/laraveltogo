@@ -18,7 +18,8 @@ const messages: any = {}
 
 const i18n = new VueI18n({
     locale: 'en',
-    fallbackLocale: 'es',
+    fallbackLocale: 'en',
+    preserveDirectiveContent: true,
     messages,
 });
 

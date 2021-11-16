@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Core\IndexController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,5 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/{any}', function () {
-    return view('spa');
-})->where('any','.*');
+Auth::routes(['register' => false]);
+Route::fallback(IndexController::class);

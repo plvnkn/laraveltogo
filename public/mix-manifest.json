@@ -1,4 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/lodash.js": "/js/lodash.js?id=3fa0b766a4ae2df535c0",
+    "/js/validation.js": "/js/validation.js?id=e801bca0c25f7e6d1369",
+    "/js/axios.js": "/js/axios.js?id=67576b30ab326b84f2ee",
+    "/js/moment.js": "/js/moment.js?id=5ac1afd1545563fa1da1",
+    "/js/vuetify.js": "/js/vuetify.js?id=8ec859a752280d78a3d2",
+    "/js/router.js": "/js/router.js?id=7e108b39b073e6f99653",
+    "/js/main.js": "/js/main.js?id=47a1d54285be7a01f9b2",
+    "/js/profile.js": "/js/profile.js?id=b00e4ccfba79c6b3f2df",
+    "/js/moduleA.js": "/js/moduleA.js?id=e8e56662bd4688ddab08",
+    "/js/moduleB.js": "/js/moduleB.js?id=aea7039f0814237f5839",
+    "/js/userManagement.js": "/js/userManagement.js?id=9aa07ad1e3db8fdae5f8",
     "/css/app.css": "/css/app.css"
 }

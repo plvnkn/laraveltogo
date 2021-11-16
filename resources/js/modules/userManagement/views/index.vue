@@ -1,11 +1,11 @@
 <template>
-    <div v-t="'moduleA.title'"></div>
+    <div v-t="'userManagement.title'"></div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-    name: 'ModuleA'
+    name: 'UserManagement'
 })
 </script>

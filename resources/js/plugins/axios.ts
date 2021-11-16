@@ -17,8 +17,8 @@ window.axios.interceptors.response.use((response: any) => {
     return response
 }, (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
-        const url = new URL(error.request.responseURL)
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname.slice(1))
+        const redirect = encodeURIComponent(window.location.pathname.slice(1))
+        window.location.href = '/login?redirect=' + redirect
     }
     return Promise.reject(error)
 })

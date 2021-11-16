@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = User::factory()->create([
-            'email' => 'admin@localhost'
+            'email' => 'admin'
         ]);
         $role = Role::where('name', 'admin')->first();
         $user->roles()->attach($role);
