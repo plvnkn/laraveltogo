@@ -1,12 +1,11 @@
 import Snack from '@/modules/core/models/Snack'
 
 export default {
-    async getCurrentUser ({ commit, state }) {
-        if (window.location.href.includes('login') || state.user.email) {
+    getCurrentUser ({ commit, state }) {
+        if (state.user.email) {
             return
         }
-        const res = await window.axios.get('/api/user')
-        commit('setUser', res.data)
+        window.axios.get('/api/user').then(res => commit('setUser', res.data))
     },
 
     messageError ({ commit }, { text, error, timeout = 6000 }) {

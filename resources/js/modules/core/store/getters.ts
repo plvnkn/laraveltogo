@@ -5,6 +5,6 @@ export default {
         return state.user
     },
     authenticated (state): boolean {
-        return state.user && state.user.email
+        return !!(state.user && state.user.id)
     }
 }

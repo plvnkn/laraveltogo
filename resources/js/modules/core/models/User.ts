@@ -4,7 +4,7 @@ export default class User {
     public name: string
     public email: string
 
-    constructor (obj: any) {
+    constructor (obj?: any) {
         this.name = this.init(obj, 'name', null)
         this.email = this.init(obj, 'email', null)
     }

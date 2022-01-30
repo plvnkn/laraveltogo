@@ -11,6 +11,7 @@
                                         v-model="email"
                                         :label="$t('core.forms.login.email')"
                                         required
+                                        @keyup.enter="login"
                                     ></v-text-field>
                                 </div>
                                 <div>
@@ -19,6 +20,7 @@
                                         :label="$t('core.forms.login.password')"
                                         required
                                         type="password"
+                                        @keyup.enter="login"
                                     ></v-text-field>
                                 </div>
                                 <div>
@@ -38,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: 'Login',
@@ -47,26 +49,29 @@ export default {
         loading: false,
         password: null
     }),
+    computed: {
+        ...mapGetters('core', ['user'])
+    },
     methods: {
         ...mapActions('core', ['getCurrentUser']),
 
         async login (): Promise<void> {
             this.loading = true
             try {
-                const token = await this.$http.get('/sanctum/csrf-cookie')
+                await this.$http.get('/sanctum/csrf-cookie')
                 await this.$http.post('/login', {
                     email: this.email,
                     password: this.password
                 })
-                this.getCurrentUser()
+
+                await this.getCurrentUser()
 
                 if (this.$route.query.redirect) {
-                    console.log('redirectdingeling')
-                    window.location.href = `/${this.$route.query.redirect}`
-                } else{
-                    console.log('redirect')
-                    this.$router.push({ name: 'Dashboard'})
+                    this.$router.push(`/${this.$route.query.redirect}`)
+                } else {
+                    this.$router.push('/')
                 }
+
             } catch (error) {
 
             } finally {

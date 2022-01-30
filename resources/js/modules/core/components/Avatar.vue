@@ -57,8 +57,9 @@
     </v-row>
 </template>
 
-<script>
+<script lang="ts">
 import { mapGetters, mapMutations } from 'vuex'
+import User from '@/modules/core/models/User'
 
 export default {
     name: 'Avatar',
@@ -70,11 +71,16 @@ export default {
         }
     },
     methods: {
-        ...mapMutations('core', ['logoutUser']),
+        ...mapMutations('core', ['setUser', 'logoutUser']),
 
-        logout () {
-            this.$http.post('logout')
-            this.logoutUser()
+        async logout (): Promise<void> {
+            try {
+                await this.$http.post('/logout')
+                this.setUser(new User())
+                await this.$router.push('/login')
+            } catch (error) {
+                this.messageError({ text: this.$t('action.signout.failed'), error })
+            }
         }
     }
 }

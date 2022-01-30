@@ -1,22 +1,12 @@
 <template>
     <v-app>
-        <template v-if="loading">
-
-        </template>
-        <template v-else>
-            <template v-if="!loading && !user.email">
-                <login></login>
-            </template>
-            <template v-else>
-                <app-header></app-header>
-                <v-main>
-                    <v-container fluid>
-                        <router-view :key="$route.path"/>
-                    </v-container>
-                </v-main>
-                <snackbar />
-            </template>
-        </template>
+        <app-header v-if="authenticated"></app-header>
+        <v-main>
+            <v-container fuild>
+                <router-view v-if="(ready && authenticated) || $route.name === 'Login'"></router-view>
+            </v-container>
+        </v-main>
+        <snackbar />
     </v-app>
 </template>
 
@@ -26,32 +16,29 @@ import {mapActions, mapGetters, mapState} from 'vuex'
 import Snackbar from '@/modules/core/components/Snackbar.vue'
 import AppHeader from '@/modules/core/components/Header.vue'
 import Login from '@/modules/core/views/Login.vue'
+import AppView from '@/modules/core/components/View.vue'
 
 export default Vue.extend({
     name: 'Main',
-    components: { Login, Snackbar, AppHeader },
+    components: { Login, Snackbar, AppHeader, AppView },
 
     data: () => ({
-        loading: false
+        ready: false
     }),
 
     computed: {
-        ...mapGetters('core', ['user'])
+        ...mapGetters('core', ['authenticated'])
     },
 
     methods: {
-        ...mapActions('core', ['getCurrentUser', 'messageSuccess'])
+        ...mapActions('core', ['messageSuccess', 'getCurrentUser'])
     },
 
-    async created () {
-        this.loading = true
-        try {
-            await this.getCurrentUser()
-        } catch (error) {
-
-        } finally {
-            this.loading = false
-        }
+    created () {
+        this.$router.onReady(() => {
+            this.ready = true
+        })
+        this.getCurrentUser()
         this.messageSuccess({ text: 'Snack is working too'})
     }
 })

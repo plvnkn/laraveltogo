@@ -2,6 +2,7 @@
     "buttons": {
         "close": "Schließen"
     },
+    "dashboard": "Dashboard",
     "forms": {
         "login": {
             "button": "Login",

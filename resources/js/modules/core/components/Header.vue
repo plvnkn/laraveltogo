@@ -1,12 +1,12 @@
 <template>
     <v-app-bar app>
-        <router-link :to="{name: 'Dashboard'}">
+        <router-link :to="{ name: 'Dashboard' }">
             <v-app-bar-title v-t="'core.title'"></v-app-bar-title>
         </router-link>
 
         <v-spacer></v-spacer>
 
-        <router-link v-if="!user.email" :to="{ name: 'Login'}">{{ $t('core.forms.login.caption') }}</router-link>
+        <router-link v-if="!authenticated" :to="{ name: 'Login' }">{{ $t('core.forms.login.caption') }}</router-link>
 
         <avatar v-else></avatar>
 
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { mapMutations, mapState } from 'vuex'
+import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
 import Avatar from '@/modules/core/components/Avatar.vue'
 
 export default {
@@ -32,9 +32,14 @@ export default {
 
     computed: {
         ...mapState('core', ['user']),
+        ...mapGetters('core', ['authenticated']),
 
         routes () {
             return [
+                {
+                    "name": "Dashboard",
+                    "label": this.$t('core.dashboard')
+                },
                 {
                     "name": "ModuleA",
                     "label": this.$t('moduleA.title')
