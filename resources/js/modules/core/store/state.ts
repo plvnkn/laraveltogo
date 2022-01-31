@@ -3,5 +3,6 @@ import User from '@/modules/core/models/User'
 
 export default {
     snack: Snack,
-    user: User
+    user: User,
+    lang: String
 }

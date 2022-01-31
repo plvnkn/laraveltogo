@@ -7,7 +7,7 @@ export default {
     setUser (state, user: User): void {
         state.user = user
     },
-    logoutUser (state, user): void {
-        state.user = new User({})
+    setLang (state, lang): void {
+        state.lang = lang
     }
 }

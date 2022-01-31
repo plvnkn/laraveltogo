@@ -6,7 +6,7 @@ Vue.use(VueI18n);
 const requireModule = require.context('../modules', true, /\.json$/)
 const messages: any = {}
 
- requireModule.keys().forEach(fileName => {
+requireModule.keys().forEach(fileName => {
     const path = fileName.replace(/(\.\/|\.json)/g, '')
     const [moduleName, language] = path.split('/i18n/')
 
@@ -20,7 +20,13 @@ const i18n = new VueI18n({
     locale: 'en',
     fallbackLocale: 'en',
     preserveDirectiveContent: true,
-    messages,
+    messages
 });
+
+declare global {
+    interface Window {
+        lang: VueI18n
+    }
+}
 
 export default i18n;

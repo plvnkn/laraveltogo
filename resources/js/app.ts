@@ -20,6 +20,7 @@ async function init (): Promise<void> {
     await momentPromise
     const { default: router } = await routerPromise
     const { default: vuetify } = await vuetifyPromise
+    Vue.prototype.$lang = i18n
 
     new Vue({
         i18n,

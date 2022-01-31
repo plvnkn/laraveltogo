@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Core\I18nController;
 use App\Http\Controllers\Core\IndexController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes(['register' => false]);
+Route::put('lang', [I18nController::class, '__invoke'])->name('core.lang');
 Route::fallback(IndexController::class);

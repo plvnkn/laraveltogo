@@ -16,11 +16,10 @@ import {mapActions, mapGetters, mapState} from 'vuex'
 import Snackbar from '@/modules/core/components/Snackbar.vue'
 import AppHeader from '@/modules/core/components/Header.vue'
 import Login from '@/modules/core/views/Login.vue'
-import AppView from '@/modules/core/components/View.vue'
 
 export default Vue.extend({
     name: 'Main',
-    components: { Login, Snackbar, AppHeader, AppView },
+    components: { Login, Snackbar, AppHeader },
 
     data: () => ({
         ready: false
@@ -31,7 +30,17 @@ export default Vue.extend({
     },
 
     methods: {
-        ...mapActions('core', ['messageSuccess', 'getCurrentUser'])
+        ...mapActions('core', ['messageSuccess', 'getCurrentUser', 'setLocale']),
+        initLocale (): void {
+            const storedLocale = localStorage.getItem('locale')
+            if (storedLocale) {
+                this.$lang.loadLanguage(storedLocale)
+                return
+            }
+            const locale = document.querySelector('html').getAttribute('lang').slice(0, 2)
+            this.setLocale(locale)
+        }
+
     },
 
     created () {
@@ -39,6 +48,7 @@ export default Vue.extend({
             this.ready = true
         })
         this.getCurrentUser()
+        this.initLocale()
         this.messageSuccess({ text: 'Snack is working too'})
     }
 })

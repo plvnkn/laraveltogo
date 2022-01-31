@@ -42,6 +42,21 @@
                         >
                         </v-btn>
                         <v-divider class="my-3"></v-divider>
+                        <v-menu offset-y>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn class="text-capitalize" v-bind="attrs" v-on="on" text>
+                                    <v-icon left>mdi-translate</v-icon>
+                                    {{ locale(lang) }}
+                                    <v-icon small right>mdi-menu-down</v-icon>
+                                </v-btn>
+                            </template>
+                            <v-list dense>
+                                <v-list-item v-for="(val, key) in $lang.messages" :key="key" @click.prevent="setLocale(key)">
+                                    <v-list-item-title v-text="locale(key)"></v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                        <v-divider class="my-3"></v-divider>
                         <v-btn
                             depressed
                             rounded
@@ -58,29 +73,25 @@
 </template>
 
 <script lang="ts">
-import { mapGetters, mapMutations } from 'vuex'
+import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
 import User from '@/modules/core/models/User'
 
 export default {
     name: 'Avatar',
+
     computed: {
         ...mapGetters('core', ['user']),
+        ...mapState('core', ['lang']),
 
         initials () {
             return 'PP'
         }
     },
     methods: {
-        ...mapMutations('core', ['setUser', 'logoutUser']),
+        ...mapActions('core', ['logout', 'setLocale']),
 
-        async logout (): Promise<void> {
-            try {
-                await this.$http.post('/logout')
-                this.setUser(new User())
-                await this.$router.push('/login')
-            } catch (error) {
-                this.messageError({ text: this.$t('action.signout.failed'), error })
-            }
+        locale(key: string): string {
+            return this.$t("core.i18n.locales." + key)
         }
     }
 }
