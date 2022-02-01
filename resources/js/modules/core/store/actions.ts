@@ -1,7 +1,7 @@
 import Snack from '@/modules/core/models/Snack'
 import User from "@/modules/core/models/User";
 import i18n from "@/plugins/i18n";
-import VueI18n from "vue-i18n";
+import { localize } from 'vee-validate';
 
 export default {
     getCurrentUser ({ commit, state }) {
@@ -24,6 +24,7 @@ export default {
     async setLocale ({ commit, state }, lang ) {
         await window.axios.put('/lang', { lang })
         i18n.locale = lang
+        localize(lang)
         commit('setLang', lang)
     },
 

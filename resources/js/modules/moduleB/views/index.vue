@@ -4,15 +4,16 @@
 
         <ValidationObserver v-slot="{ invalid }">
             <form @submit.prevent="onSubmit">
-                <ValidationProvider rules="required" v-slot="{ errors }">
+                <ValidationProvider name="E-Mail" rules="required|email" v-slot="{ errors }">
                     <v-text-field
                         v-model="email"
                         label="E-Mail"
+                        :error-messages="errors"
                     ></v-text-field>
-                    <span>{{ errors[0] }}</span>
                 </ValidationProvider>
-
-                <button type="submit" :disabled="invalid">Submit</button>
+                <div>
+                    <button type="submit" :disabled="invalid">Submit</button>
+                </div>
             </form>
         </ValidationObserver>
     </div>
