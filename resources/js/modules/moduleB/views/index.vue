@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapState } from 'vuex'
+import {mapActions, mapState} from 'vuex'
 import { required } from 'vee-validate/dist/rules'
 
 export default Vue.extend({
@@ -31,8 +31,10 @@ export default Vue.extend({
         email: null
     }),
     methods: {
+        ...mapActions('core', ['messageSuccess']),
+
         onSubmit () {
-            alert('Form has been submitted!');
+            this.messageSuccess({ text: 'Snack is working too'})
         }
     }
 })

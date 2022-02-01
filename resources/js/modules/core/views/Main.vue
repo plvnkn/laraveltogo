@@ -49,7 +49,6 @@ export default Vue.extend({
         })
         this.getCurrentUser()
         this.initLocale()
-        this.messageSuccess({ text: 'Snack is working too'})
     }
 })
 </script>
